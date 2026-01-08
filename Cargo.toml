@@ -2,9 +2,15 @@
 name = "ask"
 version = "0.1.0"
 edition = "2021"
-description = "A multi-purpose CLI query tool bridging Unix and AI"
+rust-version = "1.70"
+description = "AI-powered CLI assistant - modern Unix meets AI"
 authors = ["ask contributors"]
 license = "MIT"
+repository = "https://github.com/USER/ask-rs"
+homepage = "https://github.com/USER/ask-rs"
+readme = "README.md"
+keywords = ["cli", "ai", "anthropic", "assistant", "unix"]
+categories = ["command-line-utilities"]
 
 [[bin]]
 name = "ask"
