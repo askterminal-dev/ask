@@ -33,6 +33,7 @@ pub enum Intent {
     SystemQuery(String),
     Howto(String),
     Explain(String),
+    #[allow(dead_code)]
     Exec(String),
     Ai(String),
 }

@@ -119,6 +119,7 @@ fn run_command_or_fallback(
 }
 
 #[cfg(not(target_os = "linux"))]
+#[allow(dead_code)]
 fn run_command_or_fallback(
     cmd1: &str,
     args1: &[&str],
