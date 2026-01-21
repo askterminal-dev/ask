@@ -170,8 +170,14 @@ mod tests {
     #[test]
     fn test_system_resource() {
         assert_eq!(SystemResource::from_str("disk"), Some(SystemResource::Disk));
-        assert_eq!(SystemResource::from_str("memory"), Some(SystemResource::Memory));
-        assert_eq!(SystemResource::from_str("ram"), Some(SystemResource::Memory));
+        assert_eq!(
+            SystemResource::from_str("memory"),
+            Some(SystemResource::Memory)
+        );
+        assert_eq!(
+            SystemResource::from_str("ram"),
+            Some(SystemResource::Memory)
+        );
         assert_eq!(SystemResource::from_str("unknown"), None);
     }
 }

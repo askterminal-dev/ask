@@ -24,8 +24,7 @@ static PATTERN_RENAME: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"(?i)rename.*(file|multiple)").unwrap());
 static PATTERN_DELETE: Lazy<Regex> = Lazy::new(|| Regex::new(r"(?i)delete|remove").unwrap());
 static PATTERN_COPY: Lazy<Regex> = Lazy::new(|| Regex::new(r"(?i)copy").unwrap());
-static PATTERN_PERMISSION: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"(?i)permission|chmod").unwrap());
+static PATTERN_PERMISSION: Lazy<Regex> = Lazy::new(|| Regex::new(r"(?i)permission|chmod").unwrap());
 static PATTERN_PROCESS: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"(?i)process|running|kill").unwrap());
 static PATTERN_DISK: Lazy<Regex> = Lazy::new(|| Regex::new(r"(?i)disk.*(usage|space)").unwrap());
@@ -104,9 +103,7 @@ pub async fn handle(query: &str, config: &Config) -> Result<()> {
             println!("Asking AI for help...\n");
             ai::handle(query, config).await?;
         } else {
-            println!(
-                "Tip: Try 'ask explain <command>' or configure an API key for AI assistance"
-            );
+            println!("Tip: Try 'ask explain <command>' or configure an API key for AI assistance");
         }
     }
 

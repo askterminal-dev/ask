@@ -97,12 +97,7 @@ fn run_command(cmd: &str, args: &[&str]) -> Result<()> {
 }
 
 #[cfg(target_os = "linux")]
-fn run_command_or_fallback(
-    cmd1: &str,
-    args1: &[&str],
-    cmd2: &str,
-    args2: &[&str],
-) -> Result<()> {
+fn run_command_or_fallback(cmd1: &str, args1: &[&str], cmd2: &str, args2: &[&str]) -> Result<()> {
     use std::process::Stdio;
 
     // Try first command
@@ -120,11 +115,6 @@ fn run_command_or_fallback(
 
 #[cfg(not(target_os = "linux"))]
 #[allow(dead_code)]
-fn run_command_or_fallback(
-    cmd1: &str,
-    args1: &[&str],
-    _cmd2: &str,
-    _args2: &[&str],
-) -> Result<()> {
+fn run_command_or_fallback(cmd1: &str, args1: &[&str], _cmd2: &str, _args2: &[&str]) -> Result<()> {
     run_command(cmd1, args1)
 }

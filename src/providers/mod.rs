@@ -186,7 +186,5 @@ pub fn is_known_provider_url(url: &str) -> bool {
         "api.together.xyz",
     ];
 
-    known_domains
-        .iter()
-        .any(|domain| url.contains(domain))
+    known_domains.iter().any(|domain| url.contains(domain))
 }

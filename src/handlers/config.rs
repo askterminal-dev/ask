@@ -188,10 +188,7 @@ fn print_history_warning() {
 /// Confirm custom provider or URL with security warning
 fn confirm_custom_provider(key: &str, value: &str) -> Result<bool> {
     eprintln!();
-    eprintln!(
-        "{}",
-        "SECURITY WARNING".red().bold()
-    );
+    eprintln!("{}", "SECURITY WARNING".red().bold());
     eprintln!();
     eprintln!(
         "You are configuring a custom {} that is not in the trusted allowlist:",
@@ -202,7 +199,10 @@ fn confirm_custom_provider(key: &str, value: &str) -> Result<bool> {
     eprintln!("This configuration will send your queries and API key to this destination.");
     eprintln!("Only proceed if you trust this {} completely.", key);
     eprintln!();
-    eprintln!("Known providers: {}", ProviderType::known_providers().join(", "));
+    eprintln!(
+        "Known providers: {}",
+        ProviderType::known_providers().join(", ")
+    );
     eprintln!();
     print!("Type '{}' to confirm: ", "yes".green());
     io::stdout().flush()?;

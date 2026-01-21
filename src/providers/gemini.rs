@@ -118,8 +118,7 @@ impl Provider for GeminiProvider {
                 let line = buffer[..pos].trim().to_string();
                 buffer = buffer[pos + 1..].to_string();
 
-                if line.starts_with("data: ") {
-                    let json_str = &line[6..];
+                if let Some(json_str) = line.strip_prefix("data: ") {
                     if let Ok(response) = serde_json::from_str::<StreamResponse>(json_str) {
                         if let Some(candidates) = response.candidates {
                             if let Some(candidate) = candidates.first() {

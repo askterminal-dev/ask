@@ -121,18 +121,16 @@ impl Config {
             "confirm_exec" => {
                 self.confirm_exec = matches!(value.to_lowercase().as_str(), "true" | "1" | "yes")
             }
-            "color" => {
-                self.color = matches!(value.to_lowercase().as_str(), "true" | "1" | "yes")
-            }
+            "color" => self.color = matches!(value.to_lowercase().as_str(), "true" | "1" | "yes"),
             "max_tokens" => {
                 self.max_tokens = value
                     .parse()
                     .map_err(|_| AskError::Config(format!("Invalid max_tokens value: {}", value)))?
             }
             "provider" => {
-                let provider_type = value.parse::<ProviderType>().map_err(|_| {
-                    AskError::UnknownProvider(value.to_string())
-                })?;
+                let provider_type = value
+                    .parse::<ProviderType>()
+                    .map_err(|_| AskError::UnknownProvider(value.to_string()))?;
                 self.provider = provider_type;
                 // Reset custom_provider_confirmed if switching to a known provider
                 if provider_type.is_known() {
