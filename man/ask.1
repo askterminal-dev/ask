@@ -1,0 +1,166 @@
+.TH ASK 1 "January 2025" "ask 0.1.0" "User Commands"
+.SH NAME
+ask \- AI-powered CLI assistant
+.SH SYNOPSIS
+.B ask
+[\fIOPTIONS\fR] [\fIQUERY\fR]...
+.SH DESCRIPTION
+.B ask
+is a multi-purpose command-line tool that bridges traditional Unix workflows
+with AI capabilities. It provides instant command suggestions, natural language
+system queries, and AI-powered responses for complex questions.
+.PP
+Queries can be provided as arguments (quotes optional), via stdin, or
+interactively.
+.SH OPTIONS
+.TP
+.BR \-i ", " \-\-interactive
+Enter interactive mode. Prompts for input if no query is provided.
+.TP
+.BR \-h ", " \-\-help
+Print help information and exit.
+.TP
+.BR \-V ", " \-\-version
+Print version information and exit.
+.SH COMMANDS
+.SS "Intent Detection"
+.B ask
+automatically detects your intent based on the query pattern:
+.TP
+.B "how do I ...", "how to ..."
+Returns command suggestions for the task. Falls back to AI for complex queries.
+.TP
+.B "what is using ..."
+Queries system resources (e.g., "what is using port 8080").
+.TP
+.B "explain ...", "describe ..."
+Shows help for a command via \-\-help or man page.
+.TP
+.B "who ...", "when ...", "where ...", "why ...", "what ..."
+Sends query to AI for response.
+.SS "Explicit Subcommands"
+.TP
+.BI "config " "[show|path|KEY=VALUE]"
+Manage configuration. See \fBCONFIGURATION\fR.
+.TP
+.BI "system " "RESOURCE"
+Query system information. RESOURCE can be: disk, memory, cpu, ports, uptime, os.
+.TP
+.BI "prompt " "MESSAGE"
+Display a y/n prompt and exit with code 0 (yes) or 1 (no). Useful in scripts.
+.SH CONFIGURATION
+Configuration is stored in \fI~/.config/ask/config.json\fR. Legacy
+\fI~/.askrc\fR files (key=value format) are also supported.
+.SS "Config Commands"
+.TP
+.B ask config show
+Display current configuration.
+.TP
+.B ask config path
+Display path to config file.
+.TP
+.B ask config init
+Create default config file.
+.TP
+.BI "ask config " "KEY=VALUE"
+Set a configuration value.
+.SS "Config Keys"
+.TP
+.B api_key
+Anthropic API key for AI queries.
+.TP
+.B model
+Model to use (default: claude-sonnet-4-20250514).
+.TP
+.B max_tokens
+Maximum tokens in AI response (default: 1024).
+.SH ENVIRONMENT
+.TP
+.B ANTHROPIC_API_KEY
+API key for AI queries. Overrides config file.
+.TP
+.B ASK_MODEL
+Model to use. Overrides config file.
+.TP
+.B ASK_NO_COLOR
+Disable colored output when set.
+.TP
+.B NO_COLOR
+Disable colored output when set (standard).
+.SH EXIT STATUS
+.TP
+.B 0
+Success, or "yes" response to prompt.
+.TP
+.B 1
+Error, or "no" response to prompt.
+.SH EXAMPLES
+.SS "Command Suggestions"
+.nf
+$ ask how do I compress a folder
+tar -czvf archive.tar.gz folder/
+zip -r archive.zip folder/
+
+$ ask how to find large files
+find /path -size +100M
+du -h --max-depth=1 | sort -hr
+.fi
+.SS "System Queries"
+.nf
+$ ask system disk
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       500G  200G  300G  40% /
+
+$ ask what is using port 8080
+COMMAND   PID USER   FD   TYPE DEVICE NODE NAME
+node     1234 user   23u  IPv4 0x...  TCP *:8080
+
+$ ask what is using memory
+# Shows top memory consumers
+.fi
+.SS "Command Explanation"
+.nf
+$ ask explain grep
+# Displays grep --help or man page
+.fi
+.SS "AI Queries"
+.nf
+$ ask what is the capital of France
+The capital of France is Paris.
+
+$ ask "write a bash script to backup my home directory"
+# AI provides a complete script with explanation
+.fi
+.SS "Interactive Prompts"
+.nf
+#!/bin/bash
+if ask prompt "Continue with installation?"; then
+    ./install.sh
+else
+    echo "Cancelled"
+fi
+.fi
+.SS "Pipe Mode"
+.nf
+$ echo "explain docker" | ask
+# Processes query from stdin
+.fi
+.SH FILES
+.TP
+.I ~/.config/ask/config.json
+Configuration file (XDG standard location).
+.TP
+.I ~/.askrc
+Legacy configuration file (key=value format).
+.SH SEE ALSO
+.BR curl (1),
+.BR jq (1),
+.BR lsof (1),
+.BR df (1),
+.BR ps (1)
+.SH BUGS
+Report bugs at: https://github.com/USER/ask-rs/issues
+.SH AUTHORS
+ask contributors
+.SH LICENSE
+MIT License

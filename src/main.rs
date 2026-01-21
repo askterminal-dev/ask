@@ -9,7 +9,7 @@ use colored::Colorize;
 use config::Config;
 use error::{AskError, Result};
 use intent::{detect_intent, Intent};
-use std::io::{self, BufRead, Write};
+use std::io::{self, BufRead, IsTerminal, Write};
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 
@@ -55,7 +55,7 @@ fn get_query(cli: &Cli) -> Result<Option<String>> {
     }
 
     // Pipe mode - read from stdin if no args and stdin is not a tty
-    if cli.query.is_empty() && !atty::is(atty::Stream::Stdin) {
+    if cli.query.is_empty() && !io::stdin().is_terminal() {
         let stdin = io::stdin();
         let mut lines = Vec::new();
         for line in stdin.lock().lines() {
