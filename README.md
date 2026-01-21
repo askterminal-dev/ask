@@ -2,7 +2,7 @@
 
 **AI-powered CLI assistant — modern Unix meets AI**
 
-[![CI](https://github.com/askterminal-dev/ask/actions/workflows/ci.yml/badge.svg)](https://github.com/askterminal-dev/ask/actions/workflows/ci.yml)
+[![CI](https://github.com/askterminal-dev/ask/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/askterminal-dev/ask/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 `ask` is a fast, ergonomic command-line tool that bridges traditional Unix workflows with AI capabilities. Get instant command suggestions, query system information naturally, and tap into AI for complex questions — all from your terminal.
