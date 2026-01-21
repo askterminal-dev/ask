@@ -113,12 +113,33 @@ impl Config {
     }
 
     pub fn save(&self) -> Result<()> {
+        use std::fs::OpenOptions;
+        use std::io::Write;
+        #[cfg(unix)]
+        use std::os::unix::fs::OpenOptionsExt;
+
         let config_path = get_config_path();
         if let Some(parent) = config_path.parent() {
             fs::create_dir_all(parent)?;
         }
         let content = serde_json::to_string_pretty(self)?;
-        fs::write(&config_path, content)?;
+
+        #[cfg(unix)]
+        {
+            let mut file = OpenOptions::new()
+                .write(true)
+                .create(true)
+                .truncate(true)
+                .mode(0o600)
+                .open(&config_path)?;
+            file.write_all(content.as_bytes())?;
+        }
+
+        #[cfg(not(unix))]
+        {
+            fs::write(&config_path, content)?;
+        }
+
         Ok(())
     }
 
