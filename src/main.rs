@@ -1,8 +1,8 @@
-mod api;
 mod config;
 mod error;
 mod handlers;
 mod intent;
+mod providers;
 
 use clap::Parser;
 use colored::Colorize;
@@ -77,7 +77,11 @@ fn get_query(cli: &Cli) -> Result<Option<String>> {
 async fn main() {
     if let Err(e) = run().await {
         match e {
-            AskError::MissingApiKey => {
+            AskError::MissingApiKey { .. } => {
+                // Already printed helpful message
+                std::process::exit(1);
+            }
+            AskError::CustomProviderNotConfirmed => {
                 // Already printed helpful message
                 std::process::exit(1);
             }

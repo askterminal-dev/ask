@@ -5,8 +5,8 @@ pub enum AskError {
     #[error("Configuration error: {0}")]
     Config(String),
 
-    #[error("AI mode requires an API key.\nSet it via: ask config api_key=sk-ant-...\nOr set ANTHROPIC_API_KEY environment variable")]
-    MissingApiKey,
+    #[error("{provider} requires an API key.\nSet it via: ask config api_key=<your-key>\nOr set {env_var} environment variable")]
+    MissingApiKey { provider: String, env_var: String },
 
     #[error("API error ({status}): {message}")]
     Api { status: u16, message: String },
@@ -19,6 +19,12 @@ pub enum AskError {
 
     #[error("Unknown config key: {0}")]
     UnknownConfigKey(String),
+
+    #[error("Unknown provider: {0}\nAvailable: anthropic, openai, gemini, ollama, perplexity, groq, mistral, cohere, together")]
+    UnknownProvider(String),
+
+    #[error("Custom provider not confirmed. Run 'ask config' to confirm the custom provider configuration.")]
+    CustomProviderNotConfirmed,
 
     #[error("Not sure how to query: {0}")]
     UnknownQuery(String),

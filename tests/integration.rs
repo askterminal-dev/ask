@@ -7,7 +7,7 @@ fn test_version_short() {
     cmd.arg("-v")
         .assert()
         .success()
-        .stdout(predicate::str::contains("ask 0.1.0"));
+        .stdout(predicate::str::contains("ask 0.3.0"));
 }
 
 #[test]
@@ -16,7 +16,7 @@ fn test_version_long() {
     cmd.arg("--version")
         .assert()
         .success()
-        .stdout(predicate::str::contains("ask 0.1.0"));
+        .stdout(predicate::str::contains("ask 0.3.0"));
 }
 
 #[test]
