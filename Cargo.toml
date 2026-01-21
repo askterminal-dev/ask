@@ -1,15 +1,15 @@
 [package]
-name = "ask"
+name = "ask-cmd"
 version = "0.3.0"
 edition = "2021"
 rust-version = "1.70"
 description = "AI-powered CLI assistant - modern Unix meets AI"
 authors = ["ask contributors"]
 license = "MIT"
-repository = "https://github.com/USER/ask-rs"
-homepage = "https://github.com/USER/ask-rs"
+repository = "https://github.com/askterminal-dev/ask"
+homepage = "https://github.com/askterminal-dev/ask"
 readme = "README.md"
-keywords = ["cli", "ai", "anthropic", "assistant", "unix"]
+keywords = ["cli", "ai", "llm", "assistant", "terminal"]
 categories = ["command-line-utilities"]
 
 [[bin]]

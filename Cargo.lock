@@ -62,7 +62,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "ask"
+name = "ask-cmd"
 version = "0.3.0"
 dependencies = [
  "assert_cmd",

@@ -2,7 +2,7 @@
 
 **AI-powered CLI assistant — modern Unix meets AI**
 
-[![CI](https://github.com/USER/ask-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/USER/ask-rs/actions/workflows/ci.yml)
+[![CI](https://github.com/askterminal-dev/ask/actions/workflows/ci.yml/badge.svg)](https://github.com/askterminal-dev/ask/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 `ask` is a fast, ergonomic command-line tool that bridges traditional Unix workflows with AI capabilities. Get instant command suggestions, query system information naturally, and tap into AI for complex questions — all from your terminal.
@@ -27,12 +27,12 @@ cargo install --path .
 
 ### Pre-built binaries
 
-Download from [GitHub Releases](https://github.com/USER/ask-rs/releases).
+Download from [GitHub Releases](https://github.com/askterminal-dev/ask/releases).
 
-### From crates.io (coming soon)
+### From crates.io
 
 ```bash
-cargo install ask-cli
+cargo install ask-cmd
 ```
 
 ## Quick Start
@@ -232,8 +232,8 @@ This prevents accidental data leaks to untrusted endpoints.
 ## Building from Source
 
 ```bash
-git clone https://github.com/USER/ask-rs.git
-cd ask-rs
+git clone https://github.com/askterminal-dev/ask.git
+cd ask
 
 # Debug build
 cargo build
