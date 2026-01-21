@@ -51,16 +51,43 @@ pub fn handle(args: &str, config: &mut Config) -> Result<()> {
         return Ok(());
     }
 
-    // Check if this is a sensitive key without a value - prompt securely
+    // Check if this is a sensitive key without a value - show current and prompt to change
     if SENSITIVE_KEYS.contains(&args) {
-        let value = prompt_secret(args)?;
-        if value.is_empty() {
-            println!("{}", "No value entered, config unchanged.".yellow());
-            return Ok(());
+        let current = config.get(args).unwrap_or_default();
+
+        if current.is_empty() {
+            // No value set, prompt for new value
+            let value = prompt_secret(args)?;
+            if value.is_empty() {
+                println!("{}", "No value entered, config unchanged.".yellow());
+                return Ok(());
+            }
+            config.set(args, &value)?;
+            config.save()?;
+            println!("Set {} = (hidden)", args.green());
+        } else {
+            // Value exists, show truncated and ask if user wants to change
+            let truncated = format!("{}...", &current[..current.len().min(8)]);
+            println!("{} is currently set to: {}", args, truncated);
+            print!("Do you want to change it? [y/N]: ");
+            io::stdout().flush()?;
+
+            let mut response = String::new();
+            io::stdin().read_line(&mut response)?;
+
+            if response.trim().eq_ignore_ascii_case("y") {
+                let value = prompt_secret(args)?;
+                if value.is_empty() {
+                    println!("{}", "No value entered, config unchanged.".yellow());
+                    return Ok(());
+                }
+                config.set(args, &value)?;
+                config.save()?;
+                println!("Set {} = (hidden)", args.green());
+            } else {
+                println!("Config unchanged.");
+            }
         }
-        config.set(args, &value)?;
-        config.save()?;
-        println!("Set {} = (hidden)", args.green());
         return Ok(());
     }
 
