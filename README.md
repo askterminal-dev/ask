@@ -19,20 +19,22 @@
 
 ## Installation
 
-### From source (recommended)
+### From crates.io (recommended)
 
 ```bash
-cargo install --path .
+cargo install ask-cmd
 ```
 
 ### Pre-built binaries
 
 Download from [GitHub Releases](https://github.com/askterminal-dev/ask/releases).
 
-### From crates.io
+### From source
 
 ```bash
-cargo install ask-cmd
+git clone https://github.com/askterminal-dev/ask.git
+cd ask
+cargo install --path .
 ```
 
 ## Quick Start
@@ -229,29 +231,10 @@ This prevents accidental data leaks to untrusted endpoints.
 
 `ask` keeps you in the terminal and in flow.
 
-## Building from Source
-
-```bash
-git clone https://github.com/askterminal-dev/ask.git
-cd ask
-
-# Debug build
-cargo build
-
-# Release build (optimized, ~3MB binary)
-cargo build --release
-
-# Run tests
-cargo test
-
-# Install locally
-cargo install --path .
-```
-
 ## Requirements
 
 - macOS or Linux
-- Rust 1.70+ (for building)
+- Rust 1.70+ (for building from source)
 - API key from a supported provider, or local Ollama (only needed for AI queries — system info, command suggestions, and explanations work without any API key)
 
 ## Contributing
