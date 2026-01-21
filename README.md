@@ -8,7 +8,9 @@
 `ask` is a fast, ergonomic command-line tool that bridges traditional Unix workflows with AI capabilities. Get instant command suggestions, query system information naturally, and tap into AI for complex questions — all from your terminal.
 
 <p align="center">
-  <img src="assets/demo.gif" alt="ask demo" width="600">
+  <img src="assets/demo.gif" alt="Demo showing ask being used to query system information and get AI responses in the terminal" width="600">
+  <br>
+  <em>ask in action: system queries, command suggestions, and AI responses</em>
 </p>
 
 ## Features
