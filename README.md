@@ -7,6 +7,10 @@
 
 `ask` is a fast, ergonomic command-line tool that bridges traditional Unix workflows with AI capabilities. Get instant command suggestions, query system information naturally, and tap into AI for complex questions — all from your terminal.
 
+<p align="center">
+  <img src="assets/demo.gif" alt="ask demo" width="600">
+</p>
+
 ## Features
 
 - **Multi-provider support** — Works with Anthropic, OpenAI, Gemini, Ollama, Perplexity, Groq, Mistral, Cohere, Together, or custom endpoints
