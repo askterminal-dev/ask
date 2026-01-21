@@ -52,6 +52,13 @@ ask what is using port 3000
 ask "explain the difference between threads and processes"
 ```
 
+> [!TIP]
+> **Why can't I end with `?` without quotes?** Characters like `?`, `*`, `!`, and `&` are interpreted by your shell before `ask` receives them. Use quotes for queries containing special characters:
+> ```bash
+> ask "what is the capital of France?"   # ✓ works
+> ask what is the capital of France?     # ✗ ? is parsed by shell
+> ```
+
 ### Using Other Providers
 
 ```bash
